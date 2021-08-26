@@ -22,15 +22,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
             timerHours.textContent = timer.hours;
             if (timer.hours > 0 && timer.hours < 10) {
-            timerHours.textContent = '0' + timer.hours;
+                timerHours.textContent = '0' + timer.hours;
             }
             timerMinutes.textContent = timer.minutes;
             if (timer.minutes > 0 && timer.minutes < 10) {
-            timerMinutes.textContent = '0' + timer.minutes;
+                timerMinutes.textContent = '0' + timer.minutes;
             }
             timerSeconds.textContent = timer.seconds;
             if (timer.seconds > 0 && timer.seconds < 10) {
-            timerSeconds.textContent = '0' + timer.seconds;
+                timerSeconds.textContent = '0' + timer.seconds;
             }
             if (timer.timeRemaining < 0) {
                 clearInterval(idInterval);
