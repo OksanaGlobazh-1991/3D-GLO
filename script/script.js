@@ -42,4 +42,69 @@ window.addEventListener('DOMContentLoaded', () => {
         updateClock();
     }
     const idInterval = setInterval(countTimer, 1000, '27 august 2021');
+
+
+    //menu
+
+    const toggleMenu = () => {
+
+        const btnMenu = document.querySelector('.menu'),
+            menu = document.querySelector('menu'),
+            closeBtn = document.querySelector('.close-btn'),
+            menuItems = document.querySelectorAll('ul>li');
+
+
+        const handlerMenu = () => {
+            menu.classList.toggle('active-menu');
+        };
+        btnMenu.addEventListener('click', handlerMenu);
+        closeBtn.addEventListener('click', handlerMenu);
+
+        menuItems.forEach(elem => elem.addEventListener('click', handlerMenu));
+    };
+
+    toggleMenu();
+
+    //popup
+
+    const togglePopUp = () => {
+        const popup = document.querySelector('.popup'),
+            popupBtn = document.querySelectorAll('.popup-btn'),
+            popUpClose = document.querySelector('.popup-close'),
+            popUpContent = document.querySelector('.popup-content');
+            let count = 0;
+
+        popupBtn.forEach((elem) => {
+            elem.addEventListener('click', () => {
+                popup.style.display = 'block';
+
+            });
+        });
+
+        popUpClose.addEventListener('click', () => {
+            popup.style.display = 'none';
+
+        });
+
+        let flyInterval;
+        let modalWindow = () => {
+            flyInterval = requestAnimationFrame(modalWindow);
+            count ++;
+            if (count < 200) {
+                popUpContent.style.left = count * 5 + 'px';
+            } else {
+                cancelAnimationFrame(flyInterval);
+            };
+            if (document.documentElement.clientWidth < 768) {
+                cancelAnimationFrame(flyInterval);
+            };
+        };
+
+        document.addEventListener('click', () => {
+             flyInterval = requestAnimationFrame(modalWindow);
+        });
+
+    };
+    togglePopUp();
+
 });
