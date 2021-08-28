@@ -51,18 +51,20 @@ window.addEventListener('DOMContentLoaded', () => {
         const btnMenu = document.querySelector('.menu'), // сама кнопка 2
             menu = document.querySelector('menu'); // тег меню, в нем закрытие и список
 
-        btnMenu.addEventListener('click', () => {
-            if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
-                menu.style.transform = `translate(0)`;
-            } else {
-                menu.style.transform = `translate(-100%)`;
-            }
-        });
-
-        menu.addEventListener('click', event => {
+        document.addEventListener('click', event => {
             const target = event.target;
             if (target.closest('menu')) {
                 menu.style.transform = `translate(-100%)`;
+            }
+            if (target.closest('.menu')) {
+                if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
+                    menu.style.transform = `translate(0)`;
+                } else {
+                    menu.style.transform = `translate(-100%)`;
+                }
+            }
+            if (!target) {
+                menu.style.display = 'none';
             }
         });
     };
@@ -89,7 +91,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 popup.style.display = 'none';
             } else {
                 target = target.closest('.popup-content');
-                console.log(target);
                 if (!target) {
                     popup.style.display = 'none';
 
