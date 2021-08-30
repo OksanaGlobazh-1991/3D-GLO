@@ -59,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (target.closest('.menu')) {
                 if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
                     menu.style.transform = `translate(0)`;
+                    menu.classList.toggle('active-menu');
                 } else {
                     menu.style.transform = `translate(-100%)`;
                 }
@@ -66,6 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (!target) {
                 menu.style.display = 'none';
             }
+
         });
     };
     toggleMenu();
@@ -160,10 +162,27 @@ window.addEventListener('DOMContentLoaded', () => {
     //пишем слайдер
 
     const slider = () => {
+
         const slide = document.querySelectorAll('.portfolio-item'),
             btn = document.querySelectorAll('.portfolio-btn'),
-            dot = document.querySelectorAll('.dot'),
             slider = document.querySelector('.portfolio-content');
+
+        const newElem = () => {
+
+            const portfolioDots = document.querySelector('.portfolio-dots');
+            slide.forEach((item, i) => {
+                console.log(item);
+                item = document.createElement('li');
+                item.className = 'dot';
+                if (i === 0) {
+                    item = document.createElement('li');
+                    item.className = 'dot dot-active';
+                }
+                portfolioDots.append(item);
+            });
+            dot = document.querySelectorAll('.dot');
+        };
+        newElem();
 
         let currentSlide = 0, //номер слайда
             interval;
