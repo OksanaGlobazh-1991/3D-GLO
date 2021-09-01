@@ -298,23 +298,22 @@ window.addEventListener('DOMContentLoaded', () => {
     
     const formName = document.getElementById('form2-name');
     formName.addEventListener('input', () => {
-        formName.value = formName.value.replace(/^[А-Яа-яЁё -]+/g);
+        formName.value = formName.value.replace(/^[а-яё -]+/g);
     });
     formName.addEventListener('blur', () => {
-        formName.value = formName.value.replace(/[^А-Яа-яЁё\ \-]+/g, '');
+        formName.value = formName.value.replace(/[^а-яё\ \-]+/g, '');
         formName.value = formName.value.trim();
         formName.value = formName.value.replace(/\s+/g, ' ');
-        formName.value = formName.value.charAt(0).toUpperCase() + this.slice(1);
+        formName.value = formName.value.charAt(0).toUpperCase() + formName.value.slice(1);
     });
 
 
     const formMessage = document.getElementById('form2-message');
     formMessage.addEventListener('input', () => {
-        formMessage.value = formMessage.value.replace(/^[А-Яа-яЁё -]+/g);
+        formMessage.value = formMessage.value.replace(/^[а-яё -]+/g);
     });
-    const formMessage = document.getElementById('form2-message');
     formMessage.addEventListener('blur', () => {
-        formMessage.value = formMessage.value.replace(/[^А-Яа-яЁё\ \-]+/g, );
+        formMessage.value = formMessage.value.replace(/[^а-яё\ \-]+/g, '');
         formMessage.value = formMessage.value.trim();
         formMessage.value = formMessage.value.replace(/\s+/g, ' ');
     });
@@ -324,7 +323,6 @@ window.addEventListener('DOMContentLoaded', () => {
     formEmail.addEventListener('input', () => {
         formEmail.value = formEmail.value.replace(/^[a-z-@_.!~*']+/g);
     });
-    const formEmail = document.getElementById('form2-email');
     formEmail.addEventListener('blur', () => {
         formEmail.value = formEmail.value.replace(/[^a-z\-\@\_\.\!\~\*\']+/g, '');
         formEmail.value = formEmail.value.trim();
@@ -336,7 +334,6 @@ window.addEventListener('DOMContentLoaded', () => {
     formPhone.addEventListener('input', () => {
         formPhone.value = formPhone.value.replace(/^[0-9-()]+/g);
     });
-    const formPhone = document.getElementById('form2-phone');
     formPhone.addEventListener('blur', () => {
         formPhone.value = formPhone.value.replace(/[^0-9\-\(\)]+/g, '');
         formPhone.value = formPhone.value.trim();
