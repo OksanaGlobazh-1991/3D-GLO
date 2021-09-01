@@ -171,7 +171,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const portfolioDots = document.querySelector('.portfolio-dots');
             slide.forEach((item, i) => {
-                console.log(item);
                 item = document.createElement('li');
                 item.className = 'dot';
                 if (i === 0) {
@@ -267,5 +266,81 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     slider();
+
+
+    //наша команда(фото)
+
+    const commandPhoto = document.querySelectorAll('.command__photo');
+    
+            commandPhoto.forEach(item => {
+                let photo;
+
+                item.addEventListener('mouseover', event => {
+                    photo = event.target.src;
+                    event.target.src = event.target.dataset.img;
+                    console.log(item);
+                });
+                item.addEventListener('mouseout', event => {
+                    event.target.src = photo;
+                    console.log(item);
+                });
+            });
+
+            const calcBlock = document.querySelector('.calc-block');
+            const input = calcBlock.querySelectorAll('input');
+                
+                input.forEach(item => {
+                    item.addEventListener('input', () => {
+           
+                        item.value = item.value.replace(/[^0-9]/g, '');
+                    });
+                });
+    
+    const formName = document.getElementById('form2-name');
+    formName.addEventListener('input', () => {
+        formName.value = formName.value.replace(/^[А-Яа-яЁё -]+/g);
+    });
+    formName.addEventListener('blur', () => {
+        formName.value = formName.value.replace(/[^А-Яа-яЁё\ \-]+/g, '');
+        formName.value = formName.value.trim();
+        formName.value = formName.value.replace(/\s+/g, ' ');
+        formName.value = formName.value.charAt(0).toUpperCase() + this.slice(1);
+    });
+
+
+    const formMessage = document.getElementById('form2-message');
+    formMessage.addEventListener('input', () => {
+        formMessage.value = formMessage.value.replace(/^[А-Яа-яЁё -]+/g);
+    });
+    const formMessage = document.getElementById('form2-message');
+    formMessage.addEventListener('blur', () => {
+        formMessage.value = formMessage.value.replace(/[^А-Яа-яЁё\ \-]+/g, );
+        formMessage.value = formMessage.value.trim();
+        formMessage.value = formMessage.value.replace(/\s+/g, ' ');
+    });
+
+
+    const formEmail = document.getElementById('form2-email');
+    formEmail.addEventListener('input', () => {
+        formEmail.value = formEmail.value.replace(/^[a-z-@_.!~*']+/g);
+    });
+    const formEmail = document.getElementById('form2-email');
+    formEmail.addEventListener('blur', () => {
+        formEmail.value = formEmail.value.replace(/[^a-z\-\@\_\.\!\~\*\']+/g, '');
+        formEmail.value = formEmail.value.trim();
+        formEmail.value = formEmail.value.replace(/\s+/g, ' ');
+    });
+    
+
+    const formPhone = document.getElementById('form2-phone');
+    formPhone.addEventListener('input', () => {
+        formPhone.value = formPhone.value.replace(/^[0-9-()]+/g);
+    });
+    const formPhone = document.getElementById('form2-phone');
+    formPhone.addEventListener('blur', () => {
+        formPhone.value = formPhone.value.replace(/[^0-9\-\(\)]+/g, '');
+        formPhone.value = formPhone.value.trim();
+        formPhone.value = formPhone.value.replace(/\s+/g, ' ');
+    });
 
 });
