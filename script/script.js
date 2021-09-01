@@ -288,22 +288,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const formName = document.getElementById('form2-name');
     formName.addEventListener('input', () => {
-        formName.value = formName.value.replace(/^[а-яё -]+/g);
+        formName.value = formName.value.replace(/[^а-яё -]+/g, '');
     });
     formName.addEventListener('blur', () => {
-        formName.value = formName.value.replace(/[^а-яё\ \-]+/g, '');
+        formName.value = formName.value.replace(/[^а-яё\ \-]+/gi, '');
         formName.value = formName.value.trim();
         formName.value = formName.value.replace(/\s+/g, ' ');
         formName.value = formName.value.charAt(0).toUpperCase() + formName.value.slice(1);
+
     });
 
 
     const formMessage = document.getElementById('form2-message');
     formMessage.addEventListener('input', () => {
-        formMessage.value = formMessage.value.replace(/^[а-яё -]+/g);
+        formMessage.value = formMessage.value.replace(/[^а-яё -]+/g, '');
     });
     formMessage.addEventListener('blur', () => {
-        formMessage.value = formMessage.value.replace(/[^а-яё\ \-]+/g, '');
+        formMessage.value = formMessage.value.replace(/[^а-яё\ \-]+/gi, '');
         formMessage.value = formMessage.value.trim();
         formMessage.value = formMessage.value.replace(/\s+/g, ' ');
     });
@@ -311,10 +312,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const formEmail = document.getElementById('form2-email');
     formEmail.addEventListener('input', () => {
-        formEmail.value = formEmail.value.replace(/^[a-z-@_.!~*']+/g);
+        formEmail.value = formEmail.value.replace(/[^a-z-@_.!~*']+/g, '');
     });
     formEmail.addEventListener('blur', () => {
-        formEmail.value = formEmail.value.replace(/[^a-z\-\@\_\.\!\~\*\']+/g, '');
+        formEmail.value = formEmail.value.replace(/[^a-z\-\@\_\.\!\~\*\']+/gi, '');
         formEmail.value = formEmail.value.trim();
         formEmail.value = formEmail.value.replace(/\s+/g, ' ');
     });
@@ -322,10 +323,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const formPhone = document.getElementById('form2-phone');
     formPhone.addEventListener('input', () => {
-        formPhone.value = formPhone.value.replace(/^[0-9-()]+/g);
+        formPhone.value = formPhone.value.replace(/[^0-9-()]+/g, '');
     });
     formPhone.addEventListener('blur', () => {
-        formPhone.value = formPhone.value.replace(/[^0-9\-\(\)]+/g, '');
+        formPhone.value = formPhone.value.replace(/[^0-9\-\(\)]+/gi, '');
         formPhone.value = formPhone.value.trim();
         formPhone.value = formPhone.value.replace(/\s+/g, ' ');
     });
