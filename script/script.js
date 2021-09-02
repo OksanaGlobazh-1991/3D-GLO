@@ -278,25 +278,27 @@ window.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('mouseover', event => {
             photo = event.target.src;
             event.target.src = event.target.dataset.img;
-            console.log(item);
         });
         item.addEventListener('mouseout', event => {
             event.target.src = photo;
-            console.log(item);
         });
     });
 
     const formName = document.querySelectorAll('input[name="user_name"]');
-    formName.addEventListener('input', () => {
-        formName.value = formName.value.replace(/[^а-яё -]+/g, '');
-    });
-    formName.addEventListener('blur', () => {
-        formName.value = formName.value.replace(/[^а-яё\ \-]+/gi, '');
-        formName.value = formName.value.trim();
-        formName.value = formName.value.replace(/\s+/g, ' ');
-        formName.value = formName.value.charAt(0).toUpperCase() + formName.value.slice(1);
 
-    });
+    formName.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/^[а-яё -]+/g, '');
+        });
+        item.addEventListener('blur', () => {
+            item.value = item.value.replace(/[^а-яё\ \-]+/gi, '');
+            item.value = item.value.trim();
+            item.value = item.value.replace(/\s+/g, ' ');
+            item.value = item.value.charAt(0).toUpperCase() + item.value.slice(1);
+    
+        });
+    })
+    
 
 
     const formMessage = document.getElementById('form2-message');
@@ -311,25 +313,35 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     const formEmail = document.querySelectorAll('.form-email');
-    formEmail.addEventListener('input', () => {
-        formEmail.value = formEmail.value.replace(/[^a-z-@_.!~*']+/g, '');
-    });
-    formEmail.addEventListener('blur', () => {
-        formEmail.value = formEmail.value.replace(/[^a-z\-\@\_\.\!\~\*\']+/gi, '');
-        formEmail.value = formEmail.value.trim();
-        formEmail.value = formEmail.value.replace(/\s+/g, ' ');
-    });
+
+    formEmail.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/[^a-z-@_.!~*']+/g, '');
+        });
+        item.addEventListener('blur', () => {
+            item.value = item.value.replace(/[^a-z\-\@\_\.\!\~\*\']+/gi, '');
+            item.value = item.value.trim();
+            item.value = item.value.replace(/\s+/g, ' ');
+        });
+    });   
+    
 
 
     const formPhone = document.querySelectorAll('.form-phone');
-    formPhone.addEventListener('input', () => {
-        formPhone.value = formPhone.value.replace(/[^0-9-()]+/g, '');
-    });
-    formPhone.addEventListener('blur', () => {
-        formPhone.value = formPhone.value.replace(/[^0-9\-\(\)]+/gi, '');
-        formPhone.value = formPhone.value.trim();
-        formPhone.value = formPhone.value.replace(/\s+/g, ' ');
-    });
+
+        formPhone.forEach(item => {
+            item.addEventListener('input', () => {
+                item.value = item.value.replace(/[^0-9-()]+/g, '');
+            });
+            item.addEventListener('blur', () => {
+                item.value = item.value.replace(/[^0-9\-\(\)]+/gi, '');
+                item.value = item.value.trim();
+                item.value = item.value.replace(/\s+/g, ' ');
+            });
+
+        });
+    
+    
 
     //калькулятор
 
