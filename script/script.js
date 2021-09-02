@@ -286,7 +286,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const formName = document.getElementById('form2-name');
+    const formName = document.querySelectorAll('input[name="user_name"]');
     formName.addEventListener('input', () => {
         formName.value = formName.value.replace(/[^а-яё -]+/g, '');
     });
@@ -310,7 +310,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    const formEmail = document.getElementById('form2-email');
+    const formEmail = document.querySelectorAll('.form-email');
     formEmail.addEventListener('input', () => {
         formEmail.value = formEmail.value.replace(/[^a-z-@_.!~*']+/g, '');
     });
@@ -321,7 +321,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    const formPhone = document.getElementById('form2-phone');
+    const formPhone = document.querySelectorAll('.form-phone');
     formPhone.addEventListener('input', () => {
         formPhone.value = formPhone.value.replace(/[^0-9-()]+/g, '');
     });
