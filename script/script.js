@@ -288,7 +288,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     formName.forEach(item => {
         item.addEventListener('input', () => {
-            item.value = item.value.replace(/^[а-яё -]+/g, '');
+            item.value = item.value.replace(/[^а-яё -]+/g, '');
         });
         item.addEventListener('blur', () => {
             item.value = item.value.replace(/[^а-яё\ \-]+/gi, '');
