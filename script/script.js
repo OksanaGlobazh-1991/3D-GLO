@@ -288,25 +288,25 @@ window.addEventListener('DOMContentLoaded', () => {
 
     formName.forEach(item => {
         item.addEventListener('input', () => {
-            item.value = item.value.replace(/[^а-яё -]+/g, '');
+            item.value = item.value.replace(/[^а-яё ]+/g, '');
         });
         item.addEventListener('blur', () => {
-            item.value = item.value.replace(/[^а-яё\ \-]+/gi, '');
+            item.value = item.value.replace(/[^а-яё\ ]+/gi, '');
             item.value = item.value.trim();
             item.value = item.value.replace(/\s+/g, ' ');
             item.value = item.value.charAt(0).toUpperCase() + item.value.slice(1);
-    
+
         });
-    })
-    
+    });
+
 
 
     const formMessage = document.getElementById('form2-message');
     formMessage.addEventListener('input', () => {
-        formMessage.value = formMessage.value.replace(/[^а-яё -]+/g, '');
+        formMessage.value = formMessage.value.replace(/[^?!,.а-яА-ЯёЁ0-9\s]+/g, '');
     });
     formMessage.addEventListener('blur', () => {
-        formMessage.value = formMessage.value.replace(/[^а-яё\ \-]+/gi, '');
+        formMessage.value = formMessage.value.replace(/[^\?\!\,\.\а-яА-ЯёЁ0-9\s]+/gi, '');
         formMessage.value = formMessage.value.trim();
         formMessage.value = formMessage.value.replace(/\s+/g, ' ');
     });
@@ -323,25 +323,25 @@ window.addEventListener('DOMContentLoaded', () => {
             item.value = item.value.trim();
             item.value = item.value.replace(/\s+/g, ' ');
         });
-    });   
-    
+    });
+
 
 
     const formPhone = document.querySelectorAll('.form-phone');
 
-        formPhone.forEach(item => {
-            item.addEventListener('input', () => {
-                item.value = item.value.replace(/[^0-9-()]+/g, '');
-            });
-            item.addEventListener('blur', () => {
-                item.value = item.value.replace(/[^0-9\-\(\)]+/gi, '');
-                item.value = item.value.trim();
-                item.value = item.value.replace(/\s+/g, ' ');
-            });
-
+    formPhone.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/[^0-9+]+/g, '');
         });
-    
-    
+        item.addEventListener('blur', () => {
+            item.value = item.value.replace(/[^0-9\+]+/gi, '');
+            item.value = item.value.trim();
+            item.value = item.value.replace(/\s+/g, ' ');
+        });
+
+    });
+
+
 
     //калькулятор
 
@@ -407,28 +407,31 @@ window.addEventListener('DOMContentLoaded', () => {
             loadMessage = 'Загрузка...',
             successMessage = 'Спасибо! Мы скоро с Вами свяжемся!';
 
-        const form = document.querySelectorAll('input[name="user_form"]');
+        const forms = document.querySelectorAll('form'); // по тегу
         const statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem;';
-
-        form.forEach(item => {
+        
+        forms.forEach(item => {
             item.addEventListener('submit', event => {
                 event.preventDefault();
                 item.appendChild(statusMessage);
                 statusMessage.textContent = loadMessage;
                 const formData = new FormData(item);
-                let body = {};
-                for (let val of formData.entries()) {
-                    body[val[0]] = val[1];  
+                const body = {};
+                for (const val of formData.entries()) {
+                    body[val[0]] = val[1];
                 }
                 postData(body, () => {
                     statusMessage.textContent = successMessage;
-                }, (error) => {
+                }, error => {
                     statusMessage.textContent = errorMessage;
                     console.error(error);
                 });
+                    [...item].forEach(input => {
+                        input.value = '';
+                    });
             });
-        })
+        });
 
         const postData = (body, outputData, errorData) => {
             const request = new XMLHttpRequest();
@@ -437,15 +440,15 @@ window.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
                 if (request.status === 200) {
-                    outputData();   
+                    outputData();
                 } else {
-                    errorData(request.status);  
+                    errorData(request.status);
                 }
             });
             request.open('POST', './server.php');
             request.setRequestHeader('Content-Type', 'multipart/form-data');
             request.send(JSON.stringify(body));
-        }
+        };
 
     };
     sendForm();
