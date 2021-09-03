@@ -402,7 +402,6 @@ window.addEventListener('DOMContentLoaded', () => {
     //send-ajax-form
 
     const sendForm = () => {
-
         const errorMessage = 'Что то пошло не так...',
             loadMessage = 'Загрузка...',
             successMessage = 'Спасибо! Мы скоро с Вами свяжемся!';
@@ -422,9 +421,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     body[val[0]] = val[1];
                 }
                 postData(body, () => {
-                    statusMessage.textContent = successMessage;
+                
                 }, error => {
-                    statusMessage.textContent = errorMessage;
                     console.error(error);
                 });
                 [...item].forEach(input => {
@@ -434,26 +432,27 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         const postData = body => {
-            new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
                 const request = new XMLHttpRequest();
-                request.open('POST', './server.php');
                 request.addEventListener('readystatechange', () => {
                     if (request.readyState !== 4) {
                         return;
                     }
                     if (request.status === 200) {
-                        resolve(body);
+                        resolve();
                     } else {
-                        reject(request.status);
+                        statusMessage.textContent = errorMessage;
+                        reject();
                     }
                 });
-
-                request.setRequestHeader('Content-Type', 'multipart/form-data');
+                request.open('POST', './server.php');
+                request.setRequestHeader('Content-Type', 'application/json');
                 request.send(JSON.stringify(body));
             });
         };
+        
         postData(body)
-            .then(statusMessage)
+            .then(() => statusMessage.textContent = successMessage)
             .catch(error => console.error(error));
 
     };

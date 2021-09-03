@@ -22,14 +22,13 @@ const getData = (url) => {
 };
 
 const outputPhotos = (data) => {
-
+console.log(data);
   data.forEach(item => {
     output.insertAdjacentHTML('beforebegin', `<h4>${item.title}</h4>
                               <img src="${item.thumbnailUrl}" alt="${item.title}">`);
   });
-  
-  
 };
+
 const urlPhotos = 'https://jsonplaceholder.typicode.com/photos';
 
 const oneImg = getData('https://jsonplaceholder.typicode.com/photos/1');
