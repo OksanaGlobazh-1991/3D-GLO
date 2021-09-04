@@ -415,13 +415,21 @@ window.addEventListener('DOMContentLoaded', () => {
                 item.appendChild(statusMessage);
                 statusMessage.textContent = loadMessage;
                 const formData = new FormData(item);
-                const body = {};
-                for (const val of formData.entries()) {
-                    body[val[0]] = val[1];
-                }
-                postData(body)
-                    .then(() => statusMessage.textContent = successMessage)
-                    .catch(error => console.error(error));
+                // const body = {};
+                // for (const val of formData.entries()) {
+                //     body[val[0]] = val[1];
+                // }
+                postData(formData)
+                    .then((response) => {
+                        if (response.status !== 200) {
+                            throw new Error('status network not 200');
+                        }
+                        statusMessage.textContent = successMessage;
+                    })
+                    .catch(error => {
+                        statusMessage.textContent = errorMessage;
+                        console.error(error);
+                    });
               
                 [...item].forEach(input => {
                     input.value = '';
@@ -429,25 +437,16 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        const postData = body => {
-        return new Promise((resolve, reject) => {
-            const request = new XMLHttpRequest();
-            request.addEventListener('readystatechange', () => {
-                if (request.readyState !== 4) {
-                    return;
-                }
-                if (request.status === 200) {
-                    resolve();
-                } else {
-                    reject(request.statusText);
-                }
+        const postData = (formData) => {
+            return fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: formData,
+                credentials: 'include'
             });
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
-        });
-
-    }
+        }
 
     };
     sendForm();
