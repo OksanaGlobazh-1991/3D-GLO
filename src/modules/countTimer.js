@@ -6,6 +6,7 @@ function countTimer(deadline) {
 
     function getTimeRemaining() {
 
+
         const dateStop = new Date(deadline).getTime(),
             dateNow = new Date().getTime(),
             timeRemaining = (dateStop - dateNow) / 1000,
@@ -14,6 +15,8 @@ function countTimer(deadline) {
             hours = Math.floor(timeRemaining / 60 / 60);
         return { timeRemaining, hours, minutes, seconds };
     }
+
+    let idInterval = 0;
 
     function updateClock() {
         const timer = getTimeRemaining();
@@ -37,11 +40,10 @@ function countTimer(deadline) {
             timerSeconds.textContent = '00';
         }
     }
-    const idInterval = setInterval(updateClock, 1000);
+    idInterval = setInterval(updateClock, 1000);
+
 }
 
 
-
 export default countTimer;
-
 
