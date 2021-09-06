@@ -1,3 +1,4 @@
+
 function countTimer(deadline) {
     const timerHours = document.querySelector('#timer-hours'),
         timerMinutes = document.querySelector('#timer-minutes'),
@@ -36,8 +37,10 @@ function countTimer(deadline) {
             timerSeconds.textContent = '00';
         }
     }
-    updateClock();
-};
+    const idInterval = setInterval(updateClock, 1000);
+}
+
+
 
 export default countTimer;
 

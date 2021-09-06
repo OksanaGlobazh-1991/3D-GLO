@@ -11,7 +11,8 @@ import sendForm from './modules/sendForm';
 
 
 //Timer
-const idInterval = setInterval(countTimer, 1000, '10 september 2021');
+console.log(countTimer('10 september 2021'));
+
 //menu
 toggleMenu();
 //popup
