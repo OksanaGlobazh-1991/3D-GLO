@@ -15,6 +15,7 @@ function countTimer(deadline) {
             hours = Math.floor(timeRemaining / 60 / 60);
         return { timeRemaining, hours, minutes, seconds };
     }
+    getTimeRemaining();
 
     let idInterval = 0;
 

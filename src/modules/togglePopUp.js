@@ -29,8 +29,8 @@ const togglePopUp = () => {
     const modalWindow = () => {
         flyInterval = requestAnimationFrame(modalWindow);
         count++;
-        if (count < 100) {
-            popUpContent.style.left = count + 'px';
+        if (count < 50) {
+            popUpContent.style.left = count + '%';
         } else {
             cancelAnimationFrame(flyInterval);
         }

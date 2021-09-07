@@ -1,7 +1,6 @@
 const slider = () => {
 
     const slide = document.querySelectorAll('.portfolio-item'),
-        // btn = document.querySelectorAll('.portfolio-btn'),
         slider = document.querySelector('.portfolio-content');
 
     const newElem = () => {
@@ -16,7 +15,6 @@ const slider = () => {
             }
             portfolioDots.append(item);
         });
-    // let dot = document.querySelectorAll('.dot');
     };
     newElem();
     const dot = document.querySelectorAll('.dot');
