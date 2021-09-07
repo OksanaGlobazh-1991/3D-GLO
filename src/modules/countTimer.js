@@ -19,6 +19,7 @@ function countTimer(deadline) {
 
     let idInterval = 0;
 
+    updateClock();
     function updateClock() {
         const timer = getTimeRemaining();
 
