@@ -34,7 +34,8 @@ const togglePopUp = () => {
         } else {
             cancelAnimationFrame(flyInterval);
         }
-        if (document.documentElement.clientWidth < 768) {
+        if (popup.clientWidth < 768) {
+            popUpContent.style.left = '50%';
             cancelAnimationFrame(flyInterval);
         }
 
