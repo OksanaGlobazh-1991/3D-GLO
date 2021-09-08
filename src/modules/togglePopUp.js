@@ -29,30 +29,18 @@ const togglePopUp = () => {
 
     };
 
-    const resetModal = function() {
-        if (animate) {
-            cancelAnimationFrame(flyInterval);
-            popUpContent.style.left = 0;
-            count = 0;
-            animate = false;
-        } else {
-            popUpContent.style.left = 0;
-            count = 0;
-        }
-    };
 
     popup.addEventListener('click', event => {
         let target = event.target;
         if (target.classList.contains('popup-close')) {
             popup.style.display = 'none';
+            count = 0;
         } else {
             target = target.closest('.popup-content');
             if (!target) {
                 popup.style.display = 'none';
+                count = 0;
             }
-        }
-        if (target) {
-            resetModal();
         }
     });
 
