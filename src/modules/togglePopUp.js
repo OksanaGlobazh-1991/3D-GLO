@@ -11,21 +11,9 @@ const togglePopUp = () => {
         });
     });
 
-    popup.addEventListener('click', event => {
-        let target = event.target;
-        if (target.classList.contains('popup-close')) {
-            popup.style.display = 'none';
-        } else {
-            target = target.closest('.popup-content');
-            if (!target) {
-                popup.style.display = 'none';
-
-            }
-        }
-
-    });
-
+    let animate = false;
     let flyInterval;
+
     const modalWindow = () => {
         flyInterval = requestAnimationFrame(modalWindow);
         count++;
@@ -41,8 +29,41 @@ const togglePopUp = () => {
 
     };
 
+    const resetModal = function() {
+        if (animate) {
+            cancelAnimationFrame(flyInterval);
+            popUpContent.style.left = 0;
+            count = 0;
+            animate = false;
+        } else {
+            popUpContent.style.left = 0;
+            count = 0;
+        }
+    };
+
+    popup.addEventListener('click', event => {
+        let target = event.target;
+        if (target.classList.contains('popup-close')) {
+            popup.style.display = 'none';
+        } else {
+            target = target.closest('.popup-content');
+            if (!target) {
+                popup.style.display = 'none';
+            }
+        }
+        if (target) {
+            resetModal();
+        }
+    });
+
     document.addEventListener('click', () => {
-        flyInterval = requestAnimationFrame(modalWindow);
+        if (!animate) {
+            flyInterval = requestAnimationFrame(modalWindow);
+            animate = true;
+        } else {
+            animate = false;
+            cancelAnimationFrame(flyInterval);
+        }
     });
 
 };

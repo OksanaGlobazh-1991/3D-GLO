@@ -9,6 +9,16 @@ const sendForm = () => {
     statusMessage.style.cssText = 'font-size: 2rem; color: white';
     let postData = 0;
 
+    postData = formData => {
+        return fetch('./server.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include'
+    });
+    };
     forms.forEach(item => {
         item.addEventListener('submit', event => {
             event.preventDefault();
@@ -32,14 +42,6 @@ const sendForm = () => {
                     console.error(error);
                 });
         });
-    });
-    postData = formData => fetch('./server.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData),
-        credentials: 'include'
     });
 };
 
