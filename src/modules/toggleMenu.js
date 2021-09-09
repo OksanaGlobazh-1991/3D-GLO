@@ -8,6 +8,9 @@ const toggleMenu = () => {
             menu.style.transform = `translate(-100%)`;
         }
         if (target.closest('main')) {
+            menu.style.transform = `translate(-100%)`;
+        }
+        if (target.closest('.menu')) {
             if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
                 menu.style.transform = `translate(0)`;
                 menu.classList.toggle('active-menu');

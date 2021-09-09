@@ -50,7 +50,7 @@ const valide = () => {
         item.addEventListener('blur', () => {
             item.value = item.value.replace(/[^a-z\-\@\_\.\!\~\*\']+/gi, '');
             item.value = item.value.trim();
-            item.value = item.value.replace(/\s+/g, ' ');
+            item.value = item.value.replace(/\s+/g, '');
         });
     });
 
