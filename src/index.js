@@ -11,7 +11,7 @@ import sendForm from './modules/sendForm';
 
 
 //Timer
-countTimer('10 september 2021');
+countTimer('10 november 2021');
 //menu
 toggleMenu();
 //popup
