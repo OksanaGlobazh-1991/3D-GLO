@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         updateClock();
     }
-    const idInterval = setInterval(countTimer, 1000, '31 august 2021');
+    const idInterval = setInterval(countTimer, 1000, '20 november 2021');
 
 
     //menu
